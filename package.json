@@ -1,0 +1,43 @@
+{
+  "name": "create-alith-app",
+  "version": "1.0.0",
+  "description": "Create Alith AI chat applications with zero configuration",
+  "main": "index.js",
+  "bin": {
+    "create-alith-app": "./bin/create-alith-app.js"
+  },
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "alith",
+    "ai",
+    "chat",
+    "react",
+    "typescript",
+    "groq",
+    "template",
+    "cli"
+  ],
+  "author": "Alith Team",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
+    "fs-extra": "^11.1.1",
+    "ora": "^5.4.1",
+    "prompts": "^2.4.2",
+    "validate-npm-package-name": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krnkiran22/alith.git"
+  },
+  "bugs": {
+    "url": "https://github.com/krnkiran22/alith/issues"
+  },
+  "homepage": "https://github.com/krnkiran22/alith#readme"
+}
