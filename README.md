@@ -28,15 +28,23 @@ Create production-ready AI chat applications with zero configuration. Just like 
 
 ## 🚀 Quick Start
 
-Get started in seconds:
+Get started in three simple steps:
 
 ```bash
+# 1. Create your app
 npx create-alith-app my-chat-app
+
+# 2. Navigate and install dependencies
 cd my-chat-app
+npm install
+
+# 3. Start development
 npm run dev
 ```
 
 That's it! Your AI chat application is now running at `http://localhost:5173` 🎉
+
+> **Note:** We recommend manual dependency installation to avoid potential native module conflicts on different systems.
 
 ## 📖 Usage
 
@@ -62,13 +70,13 @@ npx create-alith-app my-app --skip-install --skip-git
 
 ## ⚙️ CLI Options
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--skip-install` | Skip installing dependencies | `false` |
-| `--skip-git` | Skip initializing git repository | `false` |
-| `--template <name>` | Template to use | `default` |
-| `--help` | Show help information | - |
-| `--version` | Show version number | - |
+| Option              | Description           | Default   |
+| ------------------- | --------------------- | --------- |
+| `--template <name>` | Template to use       | `default` |
+| `--help`            | Show help information | -         |
+| `--version`         | Show version number   | -         |
+
+> **Note:** Automatic dependency installation has been removed to prevent native module conflicts. Dependencies are installed manually by the user.
 
 ## 🎁 What You Get
 
@@ -95,15 +103,15 @@ my-alith-app/
 
 ### 🛠️ Tech Stack
 
-| Technology | Purpose | Version |
-|------------|---------|---------|
-| **React** | Frontend framework | 19.x |
-| **TypeScript** | Type safety | Latest |
-| **Vite** | Build tool & dev server | 7.x |
-| **Tailwind CSS** | Styling framework | 3.x |
-| **Express** | Backend API server | 4.x |
-| **Alith** | AI agent integration | Latest |
-| **Groq** | LLM API provider | - |
+| Technology       | Purpose                 | Version |
+| ---------------- | ----------------------- | ------- |
+| **React**        | Frontend framework      | 19.x    |
+| **TypeScript**   | Type safety             | Latest  |
+| **Vite**         | Build tool & dev server | 7.x     |
+| **Tailwind CSS** | Styling framework       | 3.x     |
+| **Express**      | Backend API server      | 4.x     |
+| **Alith**        | AI agent integration    | Latest  |
+| **Groq**         | LLM API provider        | -       |
 
 ## 🏃‍♂️ Getting Started
 
@@ -114,10 +122,18 @@ npx create-alith-app my-chat-app
 cd my-chat-app
 ```
 
-### 2. Set Up Environment
+### 2. Install Dependencies
 
 ```bash
-# Copy the environment template
+npm install
+```
+
+> **Important:** Manual installation prevents native module conflicts and registry errors on different systems.
+
+### 3. Set Up Environment
+
+```bash
+# Copy the environment template (if not automatically created)
 cp .env.example .env
 
 # Edit .env and add your Groq API key
@@ -125,30 +141,32 @@ cp .env.example .env
 ```
 
 Add your API key to `.env`:
+
 ```env
 GROQ_API_KEY=your_actual_groq_api_key_here
 ```
 
-### 3. Start Development
+### 4. Start Development
 
 ```bash
 npm run dev
 ```
 
 This starts both frontend (React) and backend (Express) servers concurrently:
+
 - 🌐 **Frontend**: http://localhost:5173
 - 🔧 **Backend API**: http://localhost:3001
 
 ## 📜 Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | 🚀 Start both frontend and backend in development mode |
-| `npm run frontend` | ⚛️ Start only the React development server |
-| `npm run server` | 🔧 Start only the Express backend server |
-| `npm run build` | 📦 Build the application for production |
-| `npm run preview` | 👀 Preview the production build locally |
-| `npm run lint` | 🔍 Run ESLint to check code quality |
+| Script             | Description                                            |
+| ------------------ | ------------------------------------------------------ |
+| `npm run dev`      | 🚀 Start both frontend and backend in development mode |
+| `npm run frontend` | ⚛️ Start only the React development server             |
+| `npm run server`   | 🔧 Start only the Express backend server               |
+| `npm run build`    | 📦 Build the application for production                |
+| `npm run preview`  | 👀 Preview the production build locally                |
+| `npm run lint`     | 🔍 Run ESLint to check code quality                    |
 
 ## 🔑 API Key Setup
 
@@ -189,16 +207,125 @@ Change the AI model in `server.js`:
 const alithAgent = new AlithAgent({
   apiKey: process.env.GROQ_API_KEY,
   model: "llama-3.3-70b-versatile", // Change this model
-  provider: "groq"
+  provider: "groq",
 });
 ```
 
 Available models:
+
 - `llama-3.3-70b-versatile` (Default)
 - `llama-3.1-70b-versatile`
 - `mixtral-8x7b-32768`
 
-## 🚀 Deployment
+## �️ Troubleshooting
+
+### Common Issues
+
+#### 1. **Dependency Installation Errors**
+
+If you encounter errors during `npm install`:
+
+**For Windows EPERM Errors (Permission Issues):**
+
+```powershell
+# Method 1: Run PowerShell as Administrator
+# Right-click PowerShell → "Run as Administrator"
+npm install
+
+# Method 2: Clear npm cache and reinstall
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
+
+# Method 3: Use npm ci for clean install
+npm ci
+
+# Method 4: Install outside OneDrive (RECOMMENDED)
+# Move project outside OneDrive folder to avoid file locking
+# Example: C:\Dev\my-app instead of C:\Users\Name\OneDrive\Desktop\my-app
+```
+
+**For Registry Errors (404 Not Found):**
+
+```powershell
+# Method 1: Clear npm cache
+npm cache clean --force
+npm config set registry https://registry.npmjs.org/
+npm install
+
+# Method 2: Delete lock file and reinstall
+Remove-Item package-lock.json -Force
+npm install
+
+# Method 3: Use different registry temporarily
+npm install --registry https://registry.npmjs.org/
+
+# Method 4: Install specific failing packages manually
+npm install debug@latest --save
+npm install
+```
+
+**For OneDrive File Locking Issues:**
+
+```powershell
+# Best Solution: Create project outside OneDrive
+cd C:\
+mkdir Dev
+cd Dev
+npx create-alith-app my-app
+cd my-app
+npm install
+
+# Alternative: Temporarily pause OneDrive sync
+# Right-click OneDrive icon → Pause syncing → 2 hours
+# Then run npm install
+```
+
+#### 2. **Native Module Compilation Issues**
+
+For EPERM or compilation errors with the Alith package:
+
+```bash
+# Install build tools (Windows)
+npm install --global windows-build-tools
+
+# Install build tools (macOS)
+xcode-select --install
+
+# Install build tools (Linux)
+sudo apt-get install build-essential
+```
+
+#### 3. **API Key Issues**
+
+- Ensure your `.env` file exists and contains: `GROQ_API_KEY=your_key_here`
+- Get a free API key from [Groq Console](https://console.groq.com/keys)
+- Restart the server after adding the API key
+
+#### 4. **Port Already in Use**
+
+```bash
+# Kill processes on ports 3001 and 5173
+npx kill-port 3001 5173
+
+# Or use different ports in package.json scripts
+```
+
+#### 5. **Git Clone Issues**
+
+If template download fails:
+
+- Check your internet connection
+- Ensure Git is installed and accessible
+- Try again after a few minutes
+
+### Getting Help
+
+- 📖 **Documentation**: [Alith Docs](https://github.com/krnkiran22/alith)
+- 🐛 **Issues**: [Report a Bug](https://github.com/krnkiran22/alith/issues)
+- 💬 **Community**: [Discussions](https://github.com/krnkiran22/alith/discussions)
+
+## �🚀 Deployment
 
 ### Frontend (Vercel/Netlify)
 
@@ -210,6 +337,7 @@ npm run build
 ### Backend (Railway/Render)
 
 The `server.js` file is ready for deployment. Make sure to:
+
 1. Set environment variables in your hosting platform
 2. Update CORS settings for production domains
 
@@ -246,12 +374,12 @@ npm link  # Link for local testing
 ```typescript
 // src/components/ChatInterface.tsx
 const handleSendMessage = async (message: string) => {
-  const response = await fetch('/api/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message })
+  const response = await fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message }),
   });
-  
+
   const data = await response.json();
   return data.response;
 };

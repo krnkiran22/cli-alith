@@ -1,6 +1,6 @@
 {
   "name": "create-alith-app",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Create Alith AI chat applications with zero configuration",
   "main": "index.js",
   "bin": {
