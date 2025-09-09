@@ -567,7 +567,9 @@ function App() {
 }
 
 export default App`,
-    'src/index.css': `@import "tailwindcss";
+    'src/index.css': `@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
